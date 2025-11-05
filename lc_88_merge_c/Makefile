@@ -1,13 +1,20 @@
 CC=gcc
-CFLAGS=-c -Wall
+CFLAGS=-Wall -Werror
 BUILD_DIR=./build
+BINARY_NAME=out
 
 all:
 	mkdir -p $(BUILD_DIR)
-	$(CC) -Wall tests.c tests.h merge.h -lcheck -o $(BUILD_DIR)/merge_88_tests
+	$(CC) -Wall -g -fsanitize=address \
+		tests.h \
+		tests.c  \
+		merge.h \
+		merge.c \
+		-lcheck \
+		-o $(BUILD_DIR)/$(BINARY_NAME)
 
-tests:
-	$(BUILD_DIR)/merge_88_tests
+test:
+	$(BUILD_DIR)/$(BINARY_NAME)
 
 clean:
 	rm -fr $(BUILD_DIR)
