@@ -3,6 +3,7 @@ use std::hint::black_box;
 
 use lc_9_palindrome_rust::is_palindrome;
 use lc_9_palindrome_rust::v2::is_palindrome_v2;
+use lc_9_palindrome_rust::v3::is_palindrome_v3;
 
 // pub fn criterion_benchmark(c: &mut Criterion) {
 //     c.bench_function("is_palindrome_v2", |b| {
@@ -18,6 +19,10 @@ fn bench_compare_functions(c: &mut Criterion) {
     });
     group.bench_function(BenchmarkId::new("is_palindrome_v2", inp), |b| {
         b.iter(|| is_palindrome_v2(black_box(inp)))
+    });
+
+    group.bench_function(BenchmarkId::new("is_palindrome_v3", inp), |b| {
+        b.iter(|| is_palindrome_v3(black_box(inp)))
     });
     group.finish();
 }

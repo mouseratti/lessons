@@ -1,5 +1,6 @@
 #![crate_type = "lib"]
 pub mod v2;
+pub mod v3;
 
 pub fn is_palindrome(x: i64) -> bool {
     let as_string = x.to_string();
